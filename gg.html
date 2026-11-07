@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question for Mim 🌸</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fdf5e6;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            transition: background-color 0.5s;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 600px;
+            z-index: 10;
+        }
+        h1 {
+            color: #ff6b81;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+        .gif-container img {
+            max-width: 200px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        button {
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        #yes-btn {
+            background-color: #2ed573;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.5em;
+            box-shadow: 0 5px 15px rgba(46, 213, 115, 0.4);
+        }
+        #no-btn {
+            background-color: #ff4757;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.5em;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+        #success-message {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        #success-message h1 {
+            color: #ff4757;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-container">
+        <div class="gif-container">
+            <!-- Cute asking cat GIF -->
+            <img id="main-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjFxcng3dGZtbjIzcWNqOHR5eDF5bTEzdGJqbmR1d3k0cGltaDBlZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oriO0OEd9QIDdllqo/giphy.gif" alt="Cute Cat Asking">
+        </div>
+        <h1>Be honest Mim... Do you love me? 🥺</h1>
+        
+        <div class="buttons">
+            <button id="yes-btn" onclick="sayYes()">Yes ❤️</button>
+            <button id="no-btn" onclick="sayNo()">No 💔</button>
+        </div>
+    </div>
+
+    <div class="container" id="success-message">
+        <div class="gif-container">
+            <!-- Happy excited cat GIF -->
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWJ2cHUxeDNzNjEwdm9jNm5zbnVrbHJzaTR1YW5zbm85aDJrOTQxMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif" alt="Happy Cat">
+        </div>
+        <h1>I KNEW IT! 🥰❤️</h1>
+        <p style="font-size: 1.2em; color: #555;">Since October 23, you've been my favorite person to talk to!</p>
+    </div>
+
+    <script>
+        const noMessages = [
+            "No 💔",
+            "Are you sure? 🥺",
+            "Mim, please! 😭",
+            "Don't do this to me!",
+            "Think about it again!",
+            "If you say no, I'll cry 😢",
+            "I'll buy you chocolates! 🍫",
+            "Okay, now you're just being mean 😤",
+            "You're breaking my heart 💔",
+            "Just click YES already! 😡"
+        ];
+
+        let noClickCount = 0;
+        let yesButtonSize = 1.5;
+        let yesPadding = 15;
+
+        function sayNo() {
+            noClickCount++;
+            
+            const yesBtn = document.getElementById('yes-btn');
+            const noBtn = document.getElementById('no-btn');
+
+            // Change the text of the NO button
+            if (noClickCount < noMessages.length) {
+                noBtn.innerText = noMessages[noClickCount];
+            } else {
+                noBtn.innerText = noMessages[noMessages.length - 1];
+            }
+
+            // Make the YES button bigger
+            yesButtonSize += 0.8;
+            yesPadding += 10;
+            yesBtn.style.fontSize = `${yesButtonSize}em`;
+            yesBtn.style.padding = `${yesPadding}px ${yesPadding * 2.5}px`;
+
+            // Make the NO button slightly smaller
+            noBtn.style.transform = `scale(${1 - (noClickCount * 0.05)})`;
+        }
+
+        function sayYes() {
+            document.getElementById('main-container').style.display = 'none';
+            document.getElementById('success-message').style.display = 'flex';
+            document.body.style.backgroundColor = '#ffeaa7'; // Changes background to a happy yellow
+        }
+    </script>
+</body>
+</html>
